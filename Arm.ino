@@ -11,11 +11,11 @@ void setup() {
   Serial.begin(921600);
   delay(1000);
 
-  servo1.attach(16);
-  servo2.attach(5);
-  servo3.attach(4);
-  servo4.attach(0);
-  servo5.attach(14);
+  servo1.attach(16,0,2500);
+  servo2.attach(5,0,2500);
+  servo3.attach(4,0,2500);
+  servo4.attach(0,0,2500);
+  servo5.attach(14,0,2500);
 
   homePosition();
 }
@@ -31,23 +31,23 @@ void loop() {
     } else if (cmd.startsWith("s1 ")) {  //1st
       int ang = cmd.substring(3).toInt();
       servo1.write(constrain(ang, 0, 180));
-      Serial.println("Base -> " + String(ang) + "°");
+      Serial.println("s1 -> " + String(ang) + "°");
     } else if (cmd.startsWith("s2 ")) {  //base
       int ang = cmd.substring(3).toInt();
-      servo2.write(constrain(ang, 0, 180));
-      Serial.println("Shoulder -> " + String(ang) + "°");
+      servo2.write(constrain(ang, -0, 180));
+      Serial.println("s2 -> " + String(ang) + "°");
     } else if (cmd.startsWith("s3 ")) {  //bottom 1st
       int ang = cmd.substring(3).toInt();
       servo3.write(constrain(ang, 0, 180));
-      Serial.println("Elbow -> " + String(ang) + "°");
+      Serial.println("s3 -> " + String(ang) + "°");
     } else if (cmd.startsWith("s4 ")) {  //middle
       int ang = cmd.substring(3).toInt();
       servo4.write(constrain(ang, 0, 180));
-      Serial.println("Wrist -> " + String(ang) + "°");
+      Serial.println("s4 -> " + String(ang) + "°");
     } else if (cmd.startsWith("s5 ")) {  
       int ang = cmd.substring(3).toInt();
       servo5.write(constrain(ang, 0, 180));
-      Serial.println("Gripper -> " + String(ang) + "°"); // gripper
+      Serial.println("s5 -> " + String(ang) + "°"); // gripper
     } else {
       Serial.println("Invaild Command");
     }
